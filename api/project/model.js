@@ -10,10 +10,10 @@ function getProjects() {
     );
 }
 
-function addProjects(project) {
+function addProject(project) {
     return db('projects').insert(project)
         .then(([id]) => {
-            return db('projects').where('project_id', id).first()
+            return db('projects').where('project_id', id).first();
         })
         .then(project => ({
             ...project,
@@ -23,5 +23,5 @@ function addProjects(project) {
 
 module.exports = {
     getProjects,
-    addProjects,
+    addProject,
 };

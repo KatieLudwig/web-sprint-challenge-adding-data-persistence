@@ -9,8 +9,12 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const project = await Projects.addProject(req.body);
-    res.status(201).json(project);
+    try {
+        const project = await Projects.addProject(req.body);
+        res.status(201).json(project);
+    } catch (err) {
+        res.status(400).json({ message: 'Invalid project data' });
+    }
 });
 
 module.exports = router;
